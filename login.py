@@ -2,6 +2,7 @@ from tkinter import*
 from tkinter import ttk
 from tkinter import messagebox
 import model.model_login as m_login
+from menu import menu_window
 
 ################# cores ###############
 co0 = "#353535"  # Cor da Janela
@@ -58,7 +59,7 @@ class login_window:
             result = m_login.logar(param1, param2)
             if result:
                 self.window.destroy()
-                print('Entrou no sistema')
+                menu_window()
             else:
                 messagebox.showerror("error", "Usuário ou senha inválido!")
 

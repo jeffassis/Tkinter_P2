@@ -13,8 +13,8 @@ co4 = "#FFCA18"  # Cor botão editar
 co5 = "#F1864F"  # Cor botão pesquisar
 co6 = "#3962F7"  # Cor botão limpar
 
-class funcionario:
-    # Popula a Table
+class funcionario(Toplevel):
+        # Popula a Table
     def view_command(self):
         self.bt_limpar.place_forget()
         self.bt_confirmar.place_forget()
@@ -22,7 +22,9 @@ class funcionario:
         self.tv.delete(*self.tv.get_children())
         for row in rows:
             self.tv.insert("", "end", values=row)
-        self.limpar_dados()    
+        self.limpar_dados()
+        ...   
+    # END def view_command
 
     # Pesquisa na Table
     def search_command(self,event=None):
@@ -37,6 +39,8 @@ class funcionario:
                 self.tv.insert("", "end", values=row)
             self.limpar_dados()    
             self.bt_limpar.place(x=529, y=235)
+            ...
+    # END def search_command
 
     # Adiciona dados no DB
     def insert_command(self):
@@ -55,6 +59,8 @@ class funcionario:
                 self.limpar_dados()
                 self.view_command()
                 messagebox.showinfo('Sucesso', 'Os dados foram inseridos com sucesso!')
+        ...        
+    # END def insert_command
 
     # Exclui dados no DB
     def del_command(self):
@@ -72,6 +78,8 @@ class funcionario:
             self.view_command()
         except IndexError:
             messagebox.showerror('Error', 'Selecione um registro na tabela')
+        ...
+    # END def del_command
 
     # Atualiza dados no DB    
     def update_command(self):
@@ -96,32 +104,33 @@ class funcionario:
             # Limpa os dados dos campos de texto
             self.limpar_dados()
         self.bt_confirmar.place_forget()    
-        self.view_command()                      
+        self.view_command()
+        ...
+    # END def update_command                      
 
     # Pega os dados da Table e adiciona nos widgets
     def getSelectedRow(self):
-            tv_dados = self.tv.focus()
-            tv_dicionario = self.tv.item(tv_dados)
-            tv_lista = tv_dicionario['values']
+        tv_dados = self.tv.focus()
+        tv_dicionario = self.tv.item(tv_dados)
+        tv_lista = tv_dicionario['values']
 
-            valor_id = tv_lista[0]
-            if valor_id == "":
-                messagebox.showerror('Erro', 'Selecione um registro na tabela')
-            else:    
-                self.limpar_dados()
+        valor_id = tv_lista[0]
+        if valor_id == "":
+            messagebox.showerror('Erro', 'Selecione um registro na tabela')
+        else:    
+            self.limpar_dados()                
+            self.bt_confirmar.place(x=410, y=235)
 
-                
-                self.bt_confirmar.place(x=410, y=235)
-
-                self.e_cpf.insert(0, tv_lista[1])
-                self.e_nome.insert(0, tv_lista[2])
-                self.e_endereco.insert(0, tv_lista[3])
-                self.e_email.insert(0, tv_lista[4])
-                self.e_telefone.insert(0, tv_lista[5])
-                self.e_data_nasc.insert(0, tv_lista[6])
-                self.e_funcao.insert(0, tv_lista[7])
-                self.e_disciplina.insert(0, tv_lista[8])
-            return valor_id
+            self.e_cpf.insert(0, tv_lista[1])
+            self.e_nome.insert(0, tv_lista[2])
+            self.e_endereco.insert(0, tv_lista[3])
+            self.e_email.insert(0, tv_lista[4])
+            self.e_telefone.insert(0, tv_lista[5])
+            self.e_data_nasc.insert(0, tv_lista[6])
+            self.e_funcao.insert(0, tv_lista[7])
+            self.e_disciplina.insert(0, tv_lista[8]) 
+        return valor_id
+    # END def getSelectedRow
                      
     # Limpa os dados dos campos de texto
     def limpar_dados(self):
@@ -133,16 +142,17 @@ class funcionario:
         self.e_data_nasc.delete(0, 'end')
         self.e_funcao.delete(0, 'end')
         self.e_disciplina.delete(0, 'end')            
-        self.e_pesquisa.delete(0, 'end')        
+        self.e_pesquisa.delete(0, 'end')
+        ...
+    # END def limpar_dados        
 
-    # Função que carrega Interface Gráfica
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Cadastro de Funcionário")
-        self.root.resizable(False, False)
-        self.root.geometry("910x520+200+50")
-        self.root.transient()
-
+    def __init__(self, master: Tk):
+        super().__init__(master=master)
+        
+        self.title("Cadastro de Funcionário")
+        self.resizable(False, False)
+        self.geometry("910x520+200+50")
+        
         # OPÇÕES COMBOBOX
         lista_funcao = ["Professor(a)", "Secretário(a)", "Aux. Secretaria", "Diretor(a)", "Servente", "Ajudante"]
         lista_disciplina = ["Nenhuma", "Português", "Matemática"]
@@ -159,7 +169,7 @@ class funcionario:
         self.txt_pesquisa = StringVar()
 
         # Criando widgets raiz
-        self.tela_principal = Frame(self.root, bg=co0)
+        self.tela_principal = Frame(self, bg=co0)
         self.tela_principal.place(x=0, y=0, width=910, height=520)
 
         #SEPARADOR
@@ -246,6 +256,4 @@ class funcionario:
         self.bt_editar.place(x=325, y=235)
         self.bt_pesquisa.place(x=613, y=236)
         self.view_command()
-root = Tk()
-obj = funcionario(root)
-root.mainloop()
+        self.mainloop()
