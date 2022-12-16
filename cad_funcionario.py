@@ -105,7 +105,7 @@ class Funcionario:
         lb_data_nasc.place(x=323, y=150)
         lb_funcao.place(x=20, y=180)
         lb_disciplina.place(x=323, y=180)
-         # Associação dos CAMPOS DE TEXTOS
+        # Associação dos CAMPOS DE TEXTOS
         self.e_cpf.place(x=155, y=35)
         self.e_nome.place(x=155, y=65)
         self.e_endereco.place(x=155, y=95)
@@ -115,13 +115,13 @@ class Funcionario:
         self.e_funcao.place(x=155, y=185)
         self.e_disciplina.place(x=460, y=185)
         self.e_pesquisa.place(x=689, y=240)
+        self.e_pesquisa.focus()
         ttk.Separator(self.tela_principal, orient=HORIZONTAL).place(x=688,y=260,  width=200)
         # Associação dos BUTTON
         self.bt_inserir.place(x=155, y=235)
         self.bt_deletar.place(x=240, y=235)
         self.bt_editar.place(x=325, y=235)
         self.bt_pesquisa.place(x=613, y=236)
-        self.e_cpf.focus()
         self.view_command()
         root.mainloop()
 
