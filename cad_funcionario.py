@@ -1,4 +1,8 @@
-from modulos import *
+from tkinter import*
+from tkinter import ttk
+from tkinter import messagebox
+import model.model_funcionario as m_func
+from tkcalendar import DateEntry
 
 ################# cores ###############
 co0 = "#353535"  # Cor da Janela
@@ -9,7 +13,7 @@ co4 = "#FFCA18"  # Cor botão editar
 co5 = "#F1864F"  # Cor botão pesquisar
 co6 = "#3962F7"  # Cor botão limpar
 
-class funcionario:
+class Funcionario:
     def __init__(self):
         self.window = Tk()
         root = self.window
@@ -101,7 +105,7 @@ class funcionario:
         lb_data_nasc.place(x=323, y=150)
         lb_funcao.place(x=20, y=180)
         lb_disciplina.place(x=323, y=180)
-         # Associação dos CAMPOS DE TEXTOS
+        # Associação dos CAMPOS DE TEXTOS
         self.e_cpf.place(x=155, y=35)
         self.e_nome.place(x=155, y=65)
         self.e_endereco.place(x=155, y=95)
@@ -111,13 +115,13 @@ class funcionario:
         self.e_funcao.place(x=155, y=185)
         self.e_disciplina.place(x=460, y=185)
         self.e_pesquisa.place(x=689, y=240)
+        self.e_pesquisa.focus()
         ttk.Separator(self.tela_principal, orient=HORIZONTAL).place(x=688,y=260,  width=200)
         # Associação dos BUTTON
         self.bt_inserir.place(x=155, y=235)
         self.bt_deletar.place(x=240, y=235)
         self.bt_editar.place(x=325, y=235)
         self.bt_pesquisa.place(x=613, y=236)
-        self.e_cpf.focus()
         self.view_command()
         root.mainloop()
 
@@ -187,7 +191,6 @@ class funcionario:
         """
         -> Exclui o cadastro do funcionario solicitado.
         :param id: Id do funcionario solicitado.
-        :return: Sem retorno.
         """
         try:
             tv_dados = self.tv.focus()
@@ -235,16 +238,22 @@ class funcionario:
 
     # Pega os dados da Table e adiciona nos widgets
     def getSelectedRow(self):
+        """
+        -> Seleciona um dado na tabela e popula os campos.
+        :return: valor_id.
+        """
         tv_dados = self.tv.focus()
         tv_dicionario = self.tv.item(tv_dados)
         tv_lista = tv_dicionario['values']
 
-        valor_id = tv_lista[0]
-        if valor_id == "":
+        if tv_lista == "":
+            valor_id = None
             messagebox.showerror('Erro', 'Selecione um registro na tabela')
         else:    
+            valor_id = tv_lista[0]
             self.limpar_dados()                
             self.bt_confirmar.place(x=410, y=235)
+            self.bt_limpar.place(x=529, y=235)
 
             self.e_cpf.insert(0, tv_lista[1])
             self.e_nome.insert(0, tv_lista[2])
@@ -273,4 +282,5 @@ class funcionario:
         self.e_disciplina.delete(0, 'end')            
         self.e_pesquisa.delete(0, 'end')
         ...
-    # END def limpar_dados           
+    # END def limpar_dados    
+      
