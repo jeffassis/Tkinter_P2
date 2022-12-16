@@ -13,5 +13,6 @@ import model.model_funcionario as m_func
 import model.model_login as m_login
 
 # IMPORTAÇÃO DAS CLASSES
-from cad_funcionario import funcionario
 from menu import menu_window
+from cad_aluno import Aluno
+from cad_funcionario import funcionario
