@@ -24,8 +24,6 @@ class menu_window:
         # definir a geometry
         root.geometry("%dx%d+%d+%d" % (largura, altura, posx, posy))
 
-
-
         # ========== MenuBar ==========
         barra_menu = Menu(root)        
         root.config(menu=barra_menu)
@@ -41,6 +39,9 @@ class menu_window:
 
         root.mainloop()    
         
-
+    # Funcao para chamada de Cadastro de Funcionario
     def call_funcionario(self):
         funcionario()
+        ...
+    # END def call_funcionario
+    

@@ -59,8 +59,18 @@ class login_window:
         self.e_senha.place(x=320, y=125)
         self.bt_entrar.place(x=320, y=160)
         self.bt_fechar.place(x=410, y=160)
+        self.e_usuario.focus()
+        # Keybind do botão 'Enter' no evento Login_entrar
+        root.bind('<Return>', self.call_login)
         root.mainloop()
 
+    # Funcao para utilização da Keybind
+    def call_login(self,event):
+        self.login_entrar() 
+        ...
+    # END def call_login       
+    
+    # Funcao que valida entrada do User
     def login_entrar(self):
         if self.txt_usuario.get().strip() == "" or self.txt_senha.get().strip() == "":
             messagebox.showerror("Error", "Os campos não podem ser vazios")
@@ -71,8 +81,9 @@ class login_window:
             if result:
                 self.window.destroy()
                 menu_window()
-
             else:
                 messagebox.showerror("error", "Usuário ou senha inválido!")
+        ...
+    # END def login_entrar
 
 login_window()

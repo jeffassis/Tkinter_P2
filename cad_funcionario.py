@@ -2,7 +2,7 @@ from tkinter import*
 from tkinter import ttk
 from tkinter import messagebox
 import model.model_funcionario as m_func
-from tkcalendar import Calendar, DateEntry
+from tkcalendar import DateEntry
 
 ################# cores ###############
 co0 = "#353535"  # Cor da Janela
@@ -14,8 +14,6 @@ co5 = "#F1864F"  # Cor botão pesquisar
 co6 = "#3962F7"  # Cor botão limpar
 
 class funcionario:
-      
-
     def __init__(self):
         self.window = Tk()
         root = self.window
