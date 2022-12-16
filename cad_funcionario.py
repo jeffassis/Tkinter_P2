@@ -253,6 +253,7 @@ class Funcionario:
             valor_id = tv_lista[0]
             self.limpar_dados()                
             self.bt_confirmar.place(x=410, y=235)
+            self.bt_limpar.place(x=529, y=235)
 
             self.e_cpf.insert(0, tv_lista[1])
             self.e_nome.insert(0, tv_lista[2])
