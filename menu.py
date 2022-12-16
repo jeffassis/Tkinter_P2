@@ -1,5 +1,4 @@
-from tkinter import*
-from cad_funcionario import *
+from modulos import *
 
 ################# cores ###############
 co0 = "#353535"  # Cor da Janela
@@ -37,10 +36,17 @@ class menu_window:
         menu_frame = Frame(root, bg=co0)
         menu_frame.place(x=0, y=0, width=900, height=500)
 
-        root.mainloop()    
+        root.mainloop()
+
+    # Funcao para minimizar a janela Menu Principal
+    def _minimizar(self):
+        self.window.state(newstate='iconic')
+        ...
+    # END def _minimizar         
         
     # Funcao para chamada de Cadastro de Funcionario
     def call_funcionario(self):
+        self._minimizar()
         funcionario()
         ...
     # END def call_funcionario

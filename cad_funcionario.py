@@ -1,8 +1,4 @@
-from tkinter import*
-from tkinter import ttk
-from tkinter import messagebox
-import model.model_funcionario as m_func
-from tkcalendar import DateEntry
+from modulos import *
 
 ################# cores ###############
 co0 = "#353535"  # Cor da Janela
@@ -19,8 +15,17 @@ class funcionario:
         root = self.window
         root.title("Cadastro de Funcionário")
         root.resizable(False, False)
-        root.geometry("910x520+200+50")
-        
+        # ========== Centralizar Janela ==========
+        largura = 910
+        altura = 520
+        # resolução do nosso sistema
+        largura_screen = root.winfo_screenwidth()
+        altura_screen = root.winfo_screenheight()
+        # posição da janela
+        posx = largura_screen/2 - largura/2
+        posy = altura_screen/2 - altura/2
+        # definir a geometry
+        root.geometry("%dx%d+%d+%d" % (largura, altura, posx, posy))      
         # OPÇÕES COMBOBOX
         lista_funcao = ["Professor(a)", "Secretário(a)", "Aux. Secretaria", "Diretor(a)", "Servente", "Ajudante"]
         lista_disciplina = ["Nenhuma", "Português", "Matemática"]
@@ -56,9 +61,9 @@ class funcionario:
         self.e_pesquisa = Entry(self.tela_principal, width=22, bg=co0, bd=0, fg="white", insertbackground="white", font=1)
         # Criação dos BUTTON
         self.bt_inserir = Button(self.tela_principal, command=self.insert_command, text="INSERIR",cursor="hand2", font='arial 10', bg=co3, fg="white", width=7)
-        bt_deletar = Button(self.tela_principal, command=self.del_command, text="DELETAR", cursor="hand2", font='arial 10', bg=co1, fg="white", width=7)
-        bt_editar = Button(self.tela_principal, command=self.getSelectedRow, text="EDITAR", cursor="hand2", font='arial 10', bg=co4, fg="white", width=7)
-        bt_pesquisa = Button(self.tela_principal, command=self.search_command, text="CONSULTAR",cursor="hand2", font='arial 8', bg=co5, fg="white", width=10)
+        self.bt_deletar = Button(self.tela_principal, command=self.del_command, text="DELETAR", cursor="hand2", font='arial 10', bg=co1, fg="white", width=7)
+        self.bt_editar = Button(self.tela_principal, command=self.getSelectedRow, text="EDITAR", cursor="hand2", font='arial 10', bg=co4, fg="white", width=7)
+        self.bt_pesquisa = Button(self.tela_principal, command=self.search_command, text="CONSULTAR",cursor="hand2", font='arial 8', bg=co5, fg="white", width=10)
         self.bt_limpar = Button(self.tela_principal, command=self.view_command, text="LIMPAR",cursor="hand2", font='arial 10', bg=co6, fg="white", width=7)
         self.bt_confirmar = Button(self.tela_principal, command=self.update_command, text="OK",cursor="hand2", font='arial 10', bg=co6, fg="white", width=7)
         # Criação da TABLE
@@ -109,14 +114,19 @@ class funcionario:
         ttk.Separator(self.tela_principal, orient=HORIZONTAL).place(x=688,y=260,  width=200)
         # Associação dos BUTTON
         self.bt_inserir.place(x=155, y=235)
-        bt_deletar.place(x=240, y=235)
-        bt_editar.place(x=325, y=235)
-        bt_pesquisa.place(x=613, y=236)
+        self.bt_deletar.place(x=240, y=235)
+        self.bt_editar.place(x=325, y=235)
+        self.bt_pesquisa.place(x=613, y=236)
+        self.e_cpf.focus()
         self.view_command()
         root.mainloop()
 
     # Adiciona dados no DB
     def insert_command(self):
+        """
+        -> Cria um novo cadastro de funcionario na tabela.
+        :return: Sem retorno.
+        """
         param = self.e_nome.get()
         result = m_func.search_name(param)
         if result:
@@ -137,6 +147,10 @@ class funcionario:
 
     # Popula a Table
     def view_command(self):
+        """
+        -> Mostra uma listagem na tabela de funcionario.
+        :return: Retorna dados funcionario.
+        """
         self.bt_limpar.place_forget()
         self.bt_confirmar.place_forget()
         rows = m_func.view()
@@ -149,6 +163,11 @@ class funcionario:
 
     # Pesquisa na Table
     def search_command(self,event=None):
+        """
+        -> Faz um busca pelos pelos dados do funcionario solicitado pelo nome.
+        :param nome: Passa o nome do funcionario a ser solicitado.
+        :return: Retorna uma lista com os dados do funcionario selecionado.
+        """
         like = self.e_pesquisa.get()
         if(like == ""):
             messagebox.showinfo("Status", "Digite a consulta!")
@@ -165,6 +184,11 @@ class funcionario:
 
     # Exclui dados no DB
     def del_command(self):
+        """
+        -> Exclui o cadastro do funcionario solicitado.
+        :param id: Id do funcionario solicitado.
+        :return: Sem retorno.
+        """
         try:
             tv_dados = self.tv.focus()
             tv_dicionario = self.tv.item(tv_dados)
@@ -235,6 +259,10 @@ class funcionario:
                      
     # Limpa os dados dos campos de texto
     def limpar_dados(self):
+        """
+        -> Limpa os dados nos campos de texto.
+        :return: Sem retorno.
+        """
         self.e_cpf.delete(0, 'end')
         self.e_nome.delete(0, 'end')
         self.e_endereco.delete(0, 'end')
@@ -245,5 +273,4 @@ class funcionario:
         self.e_disciplina.delete(0, 'end')            
         self.e_pesquisa.delete(0, 'end')
         ...
-    # END def limpar_dados 
-             
+    # END def limpar_dados           
