@@ -60,6 +60,7 @@ class login_window:
             if result:
                 self.window.destroy()
                 menu_window()
+
             else:
                 messagebox.showerror("error", "Usuário ou senha inválido!")
 
