@@ -1,4 +1,4 @@
-from modulos import*
+from tkinter import*
 
 ################# cores ###############
 co0 = "#353535"  # Cor da Janela

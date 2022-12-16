@@ -1,4 +1,9 @@
-from modulos import *
+from tkinter import*
+from tkinter import ttk
+from tkinter import messagebox
+import model.model_funcionario as m_func
+from tkcalendar import DateEntry
+
 
 ################# cores ###############
 co0 = "#353535"  # Cor da Janela

@@ -35,9 +35,9 @@ class menu_window:
         # ========== CADASTRO ==========
         barra_menu.add_cascade(label="Cadastro", menu=menu_cad)
         menu_cad.add_command(label='Funcionário', command=self._call_funcionario)
-        menu_cad.add_command(label='Aluno', command=self.__call_aluno)
+        menu_cad.add_command(label='Aluno', command=self._call_aluno)
         menu_cad.add_separator()
-        menu_cad.add_command(label='Sair', command=root.quit)
+        menu_cad.add_command(label='Sair', command=self.window.destroy)
         # ========== TURMAS ==========
         barra_menu.add_cascade(label="Turmas", menu=menu_turma)
         # ========== SOBRE ==========
