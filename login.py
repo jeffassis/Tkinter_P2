@@ -11,18 +11,28 @@ co2 = "#918F2B"  # Cor botão fechar
 
 class login_window:
     # INTERFACE GRAFICA LOGIN
-    def __init__(self, window):
-        # Criando a Janela...
-        self.window = window
-        self.window.geometry("600x240+200+50")
-        self.window.wm_title("Tela de Login")
+    def __init__(self):
+        self.window = Tk()
+        root = self.window
+        root.title("Tela de Login")
+        # ========== Centralizar Janela ==========
+        largura = 600
+        altura = 240
+        # resolução do nosso sistema
+        largura_screen = root.winfo_screenwidth()
+        altura_screen = root.winfo_screenheight()
+        # posição da janela
+        posx = largura_screen/2 - largura/2
+        posy = altura_screen/2 - altura/2
+        # definir a geometry
+        root.geometry("%dx%d+%d+%d" % (largura, altura, posx, posy))
 
         # Criando variáveis que armazena texto inserido
         self.txt_usuario = StringVar()
         self.txt_senha = StringVar()
 
         # Criando widgets raiz
-        self.tela_principal = Frame(self.window, bg=co0)
+        self.tela_principal = Frame(root, bg=co0)
         self.tela_principal.place(x=0, y=0, width=600, height=240)
 
         # Separador 
@@ -49,6 +59,7 @@ class login_window:
         self.e_senha.place(x=320, y=125)
         self.bt_entrar.place(x=320, y=160)
         self.bt_fechar.place(x=410, y=160)
+        root.mainloop()
 
     def login_entrar(self):
         if self.txt_usuario.get().strip() == "" or self.txt_senha.get().strip() == "":
@@ -64,6 +75,4 @@ class login_window:
             else:
                 messagebox.showerror("error", "Usuário ou senha inválido!")
 
-window = Tk()
-obj = login_window(window)
-window.mainloop()
+login_window()

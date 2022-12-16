@@ -44,4 +44,3 @@ class menu_window:
 
     def call_funcionario(self):
         funcionario()
-        

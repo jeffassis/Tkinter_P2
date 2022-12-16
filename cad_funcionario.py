@@ -27,17 +27,6 @@ class funcionario:
         lista_funcao = ["Professor(a)", "Secretário(a)", "Aux. Secretaria", "Diretor(a)", "Servente", "Ajudante"]
         lista_disciplina = ["Nenhuma", "Português", "Matemática"]
 
-        # Criando variáveis que armazena texto inserido
-        self.txt_cpf = StringVar()
-        self.txt_nome = StringVar()
-        self.txt_endereco = StringVar()
-        self.txt_email = StringVar()
-        self.txt_telefone = StringVar()
-        self.txt_data_nasc = StringVar()
-        self.txt_funcao = StringVar()
-        self.txt_disciplina = StringVar()
-        self.txt_pesquisa = StringVar()
-
         # Criando widgets raiz
         self.tela_principal = Frame(root, bg=co0)
         self.tela_principal.place(x=0, y=0, width=910, height=520)
@@ -58,15 +47,15 @@ class funcionario:
         lb_funcao = Label(self.tela_principal, text='FUNÇÃO*: ', font =('Arial Black', 12), bg=co0, fg="white")
         lb_disciplina = Label(self.tela_principal, text='DISCIPLINA: ', font =('Arial Black', 12), bg=co0, fg="white")
         # Criação dos CAMPOS DE TEXTOS
-        self.e_cpf = Entry(self.tela_principal, textvariable=self.txt_cpf, width=18, font=1)
-        self.e_nome = Entry(self.tela_principal, textvariable=self.txt_nome, width=48, font=1)
-        self.e_endereco = Entry(self.tela_principal, textvariable=self.txt_endereco, width=48, font=1)
-        self.e_email = Entry(self.tela_principal, textvariable=self.txt_email, width=48, font=1)
-        self.e_telefone = Entry(self.tela_principal, textvariable=self.txt_telefone, width=18, font=1)
-        self.e_data_nasc = DateEntry(self.tela_principal, textvariable=self.txt_data_nasc, width=18, background='darkblue', foreground='white', borderwidth=2)
-        self.e_funcao = ttk.Combobox(self.tela_principal, values=lista_funcao, textvariable=self.txt_funcao, width=16, font=1)
-        self.e_disciplina = ttk.Combobox(self.tela_principal, values=lista_disciplina, textvariable=self.txt_disciplina, width=12,font=1)
-        self.e_pesquisa = Entry(self.tela_principal, textvariable=self.txt_pesquisa, width=22, bg=co0, bd=0, fg="white", insertbackground="white", font=1)
+        self.e_cpf = Entry(self.tela_principal, width=18, font=1)
+        self.e_nome = Entry(self.tela_principal, width=48, font=1)
+        self.e_endereco = Entry(self.tela_principal, width=48, font=1)
+        self.e_email = Entry(self.tela_principal, width=48, font=1)
+        self.e_telefone = Entry(self.tela_principal, width=18, font=1)
+        self.e_data_nasc = DateEntry(self.tela_principal, width=18, background='darkblue', foreground='white', borderwidth=2)
+        self.e_funcao = ttk.Combobox(self.tela_principal, values=lista_funcao, width=16, font=1)
+        self.e_disciplina = ttk.Combobox(self.tela_principal, values=lista_disciplina, width=12,font=1)
+        self.e_pesquisa = Entry(self.tela_principal, width=22, bg=co0, bd=0, fg="white", insertbackground="white", font=1)
         # Criação dos BUTTON
         self.bt_inserir = Button(self.tela_principal, command=self.insert_command, text="INSERIR",cursor="hand2", font='arial 10', bg=co3, fg="white", width=7)
         bt_deletar = Button(self.tela_principal, command=self.del_command, text="DELETAR", cursor="hand2", font='arial 10', bg=co1, fg="white", width=7)
@@ -130,17 +119,17 @@ class funcionario:
 
     # Adiciona dados no DB
     def insert_command(self):
-        param = self.txt_nome.get()
+        param = self.e_nome.get()
         result = m_func.search_name(param)
         if result:
             self.limpar_dados()
             self.bt_confirmar.place_forget()
             messagebox.showerror('Error', 'Inserir dados diferentes')
         else:
-            if self.txt_nome.get().strip() == "" or self.txt_endereco.get().strip() == "" or self.txt_funcao.get().strip() == "":
+            if self.e_nome.get().strip() == "" or self.e_endereco.get().strip() == "" or self.e_funcao.get().strip() == "":
                 messagebox.showerror("Error", "Os campos com (*) não podem ser vazios!")
             else:    
-                m_func.insert(self.txt_cpf.get(), self.txt_nome.get(), self.txt_endereco.get(), self.txt_email.get(), self.txt_telefone.get(), self.txt_data_nasc.get(), self.txt_funcao.get(), self.txt_disciplina.get())
+                m_func.insert(self.e_cpf.get(), self.e_nome.get(), self.e_endereco.get(), self.e_email.get(), self.e_telefone.get(), self.e_data_nasc.get(), self.e_funcao.get(), self.e_disciplina.get())
                 # Limpa os dados dos campos de texto
                 self.limpar_dados()
                 self.view_command()
@@ -162,11 +151,11 @@ class funcionario:
 
     # Pesquisa na Table
     def search_command(self,event=None):
-        like = self.txt_pesquisa.get()
+        like = self.e_pesquisa.get()
         if(like == ""):
             messagebox.showinfo("Status", "Digite a consulta!")
         else:
-            param = self.txt_pesquisa.get().strip()
+            param = self.e_pesquisa.get().strip()
             rows = m_func.search(param)
             self.tv.delete(*self.tv.get_children())
             for row in rows:
@@ -210,7 +199,7 @@ class funcionario:
 
         lista = [self.cpf, self.nome, self.endereco, self.email, self.telefone, self.nascimento, self.funcao, self.disciplina, self.valor_id]
         #VERIFICA SE OS CAMPOS ESTÃO VAZIOS
-        if self.txt_nome.get().strip() == "" or self.txt_endereco.get().strip() == "" or self.txt_funcao.get().strip() == "":
+        if self.e_nome.get().strip() == "" or self.e_endereco.get().strip() == "" or self.e_funcao.get().strip() == "":
             messagebox.showerror("Error", "Os campos com (*) não podem ser vazios!")
         else:
             m_func.update(lista)
@@ -258,4 +247,5 @@ class funcionario:
         self.e_disciplina.delete(0, 'end')            
         self.e_pesquisa.delete(0, 'end')
         ...
-    # END def limpar_dados              
+    # END def limpar_dados 
+             
