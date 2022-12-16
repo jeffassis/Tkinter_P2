@@ -1,7 +1,7 @@
 from tkinter import*
 from tkinter import messagebox
 from cad_aluno import Aluno
-from cad_funcionario import funcionario
+from cad_funcionario import Funcionario
 
 ################# cores ###############
 co0 = "#353535"  # Cor da Janela
@@ -65,7 +65,7 @@ class menu_window:
         -> Chama a Janela de Cadastro de Funcionário.
         """
         self._minimizar()
-        funcionario()
+        Funcionario()
         ...
     # END def _call_funcionario
 

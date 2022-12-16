@@ -4,7 +4,6 @@ from tkinter import messagebox
 import model.model_funcionario as m_func
 from tkcalendar import DateEntry
 
-
 ################# cores ###############
 co0 = "#353535"  # Cor da Janela
 co1 = "#B00857"  # Cor botão deletar
@@ -14,7 +13,7 @@ co4 = "#FFCA18"  # Cor botão editar
 co5 = "#F1864F"  # Cor botão pesquisar
 co6 = "#3962F7"  # Cor botão limpar
 
-class funcionario:
+class Funcionario:
     def __init__(self):
         self.window = Tk()
         root = self.window
@@ -192,7 +191,6 @@ class funcionario:
         """
         -> Exclui o cadastro do funcionario solicitado.
         :param id: Id do funcionario solicitado.
-        :return: Sem retorno.
         """
         try:
             tv_dados = self.tv.focus()
@@ -240,14 +238,19 @@ class funcionario:
 
     # Pega os dados da Table e adiciona nos widgets
     def getSelectedRow(self):
+        """
+        -> Seleciona um dado na tabela e popula os campos.
+        :return: valor_id.
+        """
         tv_dados = self.tv.focus()
         tv_dicionario = self.tv.item(tv_dados)
         tv_lista = tv_dicionario['values']
 
-        valor_id = tv_lista[0]
-        if valor_id == "":
+        if tv_lista == "":
+            valor_id = None
             messagebox.showerror('Erro', 'Selecione um registro na tabela')
         else:    
+            valor_id = tv_lista[0]
             self.limpar_dados()                
             self.bt_confirmar.place(x=410, y=235)
 
@@ -278,4 +281,5 @@ class funcionario:
         self.e_disciplina.delete(0, 'end')            
         self.e_pesquisa.delete(0, 'end')
         ...
-    # END def limpar_dados           
+    # END def limpar_dados    
+      
