@@ -44,13 +44,13 @@ class Aluno:
         lb_telefone = Label(self.tela_principal, text='TELEFONE: ', font =('Arial Black', 12), bg=co0, fg="white")
         lb_cep = Label(self.tela_principal, text='CEP: ', font =('Arial Black', 12), bg=co0, fg="white")
         lb_data_nasc = Label(self.tela_principal, text='NASCIMENTO*: ', font =('Arial Black', 12), bg=co0, fg="white")
-        lb_sangue = Label(self.tela_principal, text='TIPO SANGUENEO: ', font =('Arial Black', 12), bg=co0, fg="white")
+        lb_sangue = Label(self.tela_principal, text='TIPO SANGUÍNEO: ', font =('Arial Black', 12), bg=co0, fg="white")
         # Criação dos CAMPOS DE TEXTOS
-        self.e_nome = Entry(self.tela_principal, width=48, font=1)
-        self.e_endereco = Entry(self.tela_principal, width=48, font=1)
-        self.e_telefone = Entry(self.tela_principal, width=19, font=1)
-        self.e_cep = Entry(self.tela_principal, width=20, font=1)
-        self.e_data_nasc = DateEntry(self.tela_principal, width=17, background='darkblue', foreground='white', borderwidth=2, font=1)
+        self.e_nome = Entry(self.tela_principal, width=40, font=1)
+        self.e_endereco = Entry(self.tela_principal, width=40, font=1)
+        self.e_telefone = Entry(self.tela_principal, width=16, font=1)
+        self.e_cep = Entry(self.tela_principal, width=17, font=1)
+        self.e_data_nasc = DateEntry(self.tela_principal, width=14, background='darkblue', foreground='white', borderwidth=2, font=1)
         self.e_sangue = ttk.Combobox(self.tela_principal, values=lista_sangue, width=6, font=1)
         self.e_pesquisa = Entry(self.tela_principal, width=22, bg=co0, bd=0, fg="white", insertbackground="white", font=1)
         # Criação dos BUTTON
@@ -83,22 +83,22 @@ class Aluno:
         # Associação dos LABEL
         lb_nome.place(x=20, y=30)
         lb_endereco.place(x=20, y=60)
-        lb_telefone.place(x=20, y=90)
-        lb_cep.place(x=350, y=90)
-        lb_data_nasc.place(x=20, y=120)
-        lb_sangue.place(x=340, y=120)
+        lb_telefone.place(x=20, y=100)
+        lb_cep.place(x=350, y=100)
+        lb_data_nasc.place(x=20, y=135)
+        lb_sangue.place(x=340, y=135)
         # Associação dos CAMPOS DE TEXTOS
-        self.e_nome.place(x=158, y=35)
-        self.e_endereco.place(x=158, y=65)
-        self.e_telefone.place(x=158, y=95)
-        self.e_cep.place(x=409, y=95)
-        self.e_data_nasc.place(x=158, y=125)
-        self.e_sangue.place(x=518, y=125)
+        self.e_nome.place(x=160, y=30)
+        self.e_endereco.place(x=160, y=65)
+        self.e_telefone.place(x=160, y=100)
+        self.e_cep.place(x=411, y=100)
+        self.e_data_nasc.place(x=160, y=135)
+        self.e_sangue.place(x=513, y=135)
         self.e_pesquisa.place(x=235, y=192)
         self.e_pesquisa.focus()
-        ttk.Separator(self.tela_principal, orient=HORIZONTAL).place(x=235,y=212,  width=200)
+        ttk.Separator(self.tela_principal, orient=HORIZONTAL).place(x=235,y=215,  width=220)
         # Associação dos BUTTON
-        self.bt_inserir.place(x=630, y=35)
+        self.bt_inserir.place(x=630, y=30)
         self.bt_deletar.place(x=630, y=75)
         self.bt_editar.place(x=630, y=115)
         self.bt_pesquisa.place(x=158, y=192)
@@ -162,7 +162,7 @@ class Aluno:
             for row in rows:
                 self.tv.insert("", "end", values=row)
             self.limpar_dados()    
-            self.bt_limpar.place(x=440, y=189)
+            self.bt_limpar.place(x=465, y=189)
             ...
     # END def search_command
 
@@ -199,7 +199,6 @@ class Aluno:
         sangue = self.e_sangue.get()
 
         valor_id = self.getSelectedRow()
-        print(valor_id)
         lista = [nome, endereco, telefone, cep, nascimento, sangue, valor_id]
         #VERIFICA SE OS CAMPOS ESTÃO VAZIOS
         if self.e_nome.get().strip() == "" or self.e_endereco.get().strip() == "" or self.e_data_nasc.get().strip() == "":
@@ -232,7 +231,7 @@ class Aluno:
             valor_id = tv_lista[0]
             self.limpar_dados()                
             self.bt_confirmar.place(x=630, y=155)
-            self.bt_limpar.place(x=440, y=189)
+            self.bt_limpar.place(x=465, y=189)
 
             self.e_nome.insert(0, tv_lista[1])
             self.e_endereco.insert(0, tv_lista[2])

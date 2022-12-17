@@ -15,6 +15,7 @@ class login_window:
         self.window = Tk()
         root = self.window
         root.title("Tela de Login")
+        root.resizable(False, False)
         # ========== Centralizar Janela ==========
         largura = 600
         altura = 240
@@ -44,8 +45,8 @@ class login_window:
         lb_titulo = Label(self.tela_principal, text="Seja bem-vindo", font=("Arial Black",25), bg=co0, fg="white")
         lb_usuario = Label(self.tela_principal, text='Usuário: ', font =('Arial Black', 12), bg=co0, fg="white")
         lb_senha = Label(self.tela_principal, text='Senha: ', font =('Arial Black', 12), bg=co0, fg="white")
-        self.e_usuario = Entry(self.tela_principal, textvariable=self.txt_usuario, width=25, font=1)
-        self.e_senha = Entry(self.tela_principal, textvariable=self.txt_senha, width=25, font=1, show='*')
+        self.e_usuario = Entry(self.tela_principal, textvariable=self.txt_usuario, width=23, font=1)
+        self.e_senha = Entry(self.tela_principal, textvariable=self.txt_senha, width=23, font=1, show='*')
         self.bt_entrar = Button(self.tela_principal, text="Entrar", command=self.login_entrar, cursor="hand2", font='arial', bg=co1, fg="white", width=8)
         self.bt_fechar = Button(self.tela_principal, text="Fechar", command=self.window.destroy, cursor="hand2", font='arial', bg=co2, fg="white", width=8)
         
@@ -54,11 +55,11 @@ class login_window:
         lb_dev.place(x=70,y=210)
         lb_titulo.place(x=270, y=20)
         lb_usuario.place(x=235, y=85)
-        lb_senha.place(x=235, y=120)
-        self.e_usuario.place(x=320, y=90)
+        lb_senha.place(x=245, y=121)
+        self.e_usuario.place(x=320, y=87)
         self.e_senha.place(x=320, y=125)
-        self.bt_entrar.place(x=320, y=160)
-        self.bt_fechar.place(x=410, y=160)
+        self.bt_entrar.place(x=320, y=165)
+        self.bt_fechar.place(x=430, y=165)
         self.e_usuario.focus()
         # Keybind do botão 'Enter' no evento Login_entrar
         root.bind('<Return>', self.call_login)
