@@ -2,6 +2,9 @@ from tkinter import*
 from tkinter import messagebox
 from cad_aluno import Aluno
 from cad_funcionario import Funcionario
+from cad_materia import Materia
+from cad_turma import Turma
+from cad_notas import Notas
 
 ################# cores ###############
 co0 = "#353535"  # Cor da Janela
@@ -30,6 +33,8 @@ class menu_window:
         barra_menu = Menu(root)        
         root.config(menu=barra_menu)
         menu_cad = Menu(barra_menu, tearoff=0)
+        menu_matricula = Menu(barra_menu, tearoff=0)
+        menu_notas = Menu(barra_menu, tearoff=0)
         menu_turma = Menu(barra_menu, tearoff=0)
         menu_sobre = Menu(barra_menu, tearoff=0)
         # ========== CADASTRO ==========
@@ -38,8 +43,19 @@ class menu_window:
         menu_cad.add_command(label='Aluno', command=self._call_aluno)
         menu_cad.add_separator()
         menu_cad.add_command(label='Sair', command=self.window.destroy)
-        # ========== TURMAS ==========
-        barra_menu.add_cascade(label="Turmas", menu=menu_turma)
+        # ========== MATRICULA ==========
+        barra_menu.add_cascade(label="Matriculas", menu=menu_matricula)
+        # ========== LANCAMENTO DE NOTAS ==========
+        barra_menu.add_cascade(label="Notas", menu=menu_notas)
+        menu_notas.add_command(label='Lançamento de Notas', command=self._call_notas)
+        menu_notas.add_separator()
+        menu_notas.add_command(label='Consulta de Média', command=self)
+        menu_notas.add_command(label='Consulta de Trimestre', command=self)
+        menu_notas.add_command(label='Consulta de Detalhada', command=self)
+        # ========== TURMA ==========
+        barra_menu.add_cascade(label="Turma", menu=menu_turma)
+        menu_turma.add_command(label='Lista de Turma', command=self._call_turma)
+        menu_turma.add_command(label='Matéria', command=self._call_materia)
         # ========== SOBRE ==========
         barra_menu.add_cascade(label="Sobre", menu=menu_sobre)
         menu_sobre.add_command(label='Sobre', command=self._sobreNos)
@@ -88,3 +104,33 @@ class menu_window:
                             """Este software facilita o gerenciamento de alunos.\nFoi criado por: Jefferson Assis de Souza 
                             \n\nProgramador: Python\n\nEmail: jeff-assis@hotmail.com""")
     # END def _sobreNos
+
+    # Funcao para chamada de Cadastro de Materia
+    def _call_materia(self):
+        """
+        -> Chama a janela de Cadastro de Materia
+        """
+        self._minimizar()
+        Materia()
+        ...
+    # END def _call_materia
+
+    # Funcao para chamada de Turma
+    def _call_turma(self):
+        """
+        -> Chama a janela de Turma
+        """
+        self._minimizar()
+        Turma()
+        ...
+    # END def _call_turma
+
+    # Funcao para chamada de Turma
+    def _call_notas(self):
+        """
+        -> Chama a janela de Notas
+        """
+        self._minimizar()
+        Notas()
+        ...
+    # END def _call_notas

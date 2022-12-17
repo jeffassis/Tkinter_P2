@@ -21,7 +21,7 @@ class Funcionario:
         root.resizable(False, False)
         # ========== Centralizar Janela ==========
         largura = 910
-        altura = 520
+        altura = 560
         # resolução do nosso sistema
         largura_screen = root.winfo_screenwidth()
         altura_screen = root.winfo_screenheight()
@@ -36,10 +36,7 @@ class Funcionario:
 
         # Criando widgets raiz
         self.tela_principal = Frame(root, bg=co0)
-        self.tela_principal.place(x=0, y=0, width=910, height=520)
-
-        #SEPARADOR
-        ttk.Separator(self.tela_principal, orient=HORIZONTAL).place(x=20, y=220,  width=870)
+        self.tela_principal.place(x=0, y=0, width=910, height=560)
 
         # Criando Widgets...
         # Criação dos LABEL
@@ -54,22 +51,22 @@ class Funcionario:
         lb_funcao = Label(self.tela_principal, text='FUNÇÃO*: ', font =('Arial Black', 12), bg=co0, fg="white")
         lb_disciplina = Label(self.tela_principal, text='DISCIPLINA: ', font =('Arial Black', 12), bg=co0, fg="white")
         # Criação dos CAMPOS DE TEXTOS
-        self.e_cpf = Entry(self.tela_principal, width=18, font=1)
-        self.e_nome = Entry(self.tela_principal, width=48, font=1)
-        self.e_endereco = Entry(self.tela_principal, width=48, font=1)
-        self.e_email = Entry(self.tela_principal, width=48, font=1)
-        self.e_telefone = Entry(self.tela_principal, width=18, font=1)
-        self.e_data_nasc = DateEntry(self.tela_principal, width=18, background='darkblue', foreground='white', borderwidth=2)
-        self.e_funcao = ttk.Combobox(self.tela_principal, values=lista_funcao, width=16, font=1)
+        self.e_cpf = Entry(self.tela_principal, width=14, font=1)
+        self.e_nome = Entry(self.tela_principal, width=41, font=1)
+        self.e_endereco = Entry(self.tela_principal, width=41, font=1)
+        self.e_email = Entry(self.tela_principal, width=41, font=1)
+        self.e_telefone = Entry(self.tela_principal, width=14, font=1)
+        self.e_data_nasc = DateEntry(self.tela_principal, width=12, background='darkblue', foreground='white', borderwidth=2, font=1)
+        self.e_funcao = ttk.Combobox(self.tela_principal, values=lista_funcao, width=12, font=1)
         self.e_disciplina = ttk.Combobox(self.tela_principal, values=lista_disciplina, width=12,font=1)
-        self.e_pesquisa = Entry(self.tela_principal, width=22, bg=co0, bd=0, fg="white", insertbackground="white", font=1)
+        self.e_pesquisa = Entry(self.tela_principal, width=18, bg=co0, bd=0, fg="white", insertbackground="white", font=1)
         # Criação dos BUTTON
-        self.bt_inserir = Button(self.tela_principal, command=self.insert_command, text="INSERIR",cursor="hand2", font='arial 10', bg=co3, fg="white", width=7)
-        self.bt_deletar = Button(self.tela_principal, command=self.del_command, text="DELETAR", cursor="hand2", font='arial 10', bg=co1, fg="white", width=7)
-        self.bt_editar = Button(self.tela_principal, command=self.getSelectedRow, text="EDITAR", cursor="hand2", font='arial 10', bg=co4, fg="white", width=7)
+        self.bt_inserir = Button(self.tela_principal, command=self.insert_command, text="INSERIR",cursor="hand2", font='arial 10', bg=co3, fg="white", width=8)
+        self.bt_editar = Button(self.tela_principal, command=self.getSelectedRow, text="EDITAR", cursor="hand2", font='arial 10', bg=co4, fg="white", width=8)
+        self.bt_deletar = Button(self.tela_principal, command=self.del_command, text="DELETAR", cursor="hand2", font='arial 10', bg=co1, fg="white", width=8)
         self.bt_pesquisa = Button(self.tela_principal, command=self.search_command, text="CONSULTAR",cursor="hand2", font='arial 8', bg=co5, fg="white", width=10)
         self.bt_limpar = Button(self.tela_principal, command=self.view_command, text="LIMPAR",cursor="hand2", font='arial 10', bg=co6, fg="white", width=7)
-        self.bt_confirmar = Button(self.tela_principal, command=self.update_command, text="OK",cursor="hand2", font='arial 10', bg=co6, fg="white", width=7)
+        self.bt_confirmar = Button(self.tela_principal, command=self.update_command, text="OK",cursor="hand2", font='arial 10', bg=co6, fg="white", width=8)
         # Criação da TABLE
         self.tv = ttk.Treeview(self.tela_principal, columns=("id", "cpf", "nome", "endereco", "email", "telefone", "nascimento", "funcao", "disciplina"), show='headings')
         self.tv.place(x=15,y=280)
@@ -96,32 +93,32 @@ class Funcionario:
         # Associando Widgets na janela...
         # Associação dos LABEL
         #self.lb_professor.place(x=680, y=60)
-        lb_titulo.place(x=610, y=30)
-        lb_cpf.place(x=20, y=30)
-        lb_nome.place(x=20, y=60)
+        lb_titulo.place(x=620, y=10)
+        lb_cpf.place(x=20, y=10)
+        lb_nome.place(x=20, y=50)
         lb_endereco.place(x=20, y=90)
-        lb_email.place(x=20, y=120)
-        lb_telefone.place(x=20, y=150)
-        lb_data_nasc.place(x=323, y=150)
-        lb_funcao.place(x=20, y=180)
-        lb_disciplina.place(x=323, y=180)
+        lb_email.place(x=20, y=130)
+        lb_telefone.place(x=20, y=170)
+        lb_data_nasc.place(x=320, y=170)
+        lb_funcao.place(x=20, y=210)
+        lb_disciplina.place(x=323, y=210)
         # Associação dos CAMPOS DE TEXTOS
-        self.e_cpf.place(x=155, y=35)
-        self.e_nome.place(x=155, y=65)
-        self.e_endereco.place(x=155, y=95)
-        self.e_email.place(x=155, y=125)
-        self.e_telefone.place(x=155, y=155)
-        self.e_data_nasc.place(x=460, y=155)
-        self.e_funcao.place(x=155, y=185)
-        self.e_disciplina.place(x=460, y=185)
-        self.e_pesquisa.place(x=689, y=240)
+        self.e_cpf.place(x=155, y=10)
+        self.e_nome.place(x=155, y=50)
+        self.e_endereco.place(x=155, y=90)
+        self.e_email.place(x=155, y=130)
+        self.e_telefone.place(x=155, y=170)
+        self.e_data_nasc.place(x=455, y=170)
+        self.e_funcao.place(x=155, y=210)
+        self.e_disciplina.place(x=455, y=210)
+        self.e_pesquisa.place(x=695, y=215)
         self.e_pesquisa.focus()
-        ttk.Separator(self.tela_principal, orient=HORIZONTAL).place(x=688,y=260,  width=200)
+        ttk.Separator(self.tela_principal, orient=HORIZONTAL).place(x=695,y=239,  width=200)
         # Associação dos BUTTON
-        self.bt_inserir.place(x=155, y=235)
-        self.bt_deletar.place(x=240, y=235)
-        self.bt_editar.place(x=325, y=235)
-        self.bt_pesquisa.place(x=613, y=236)
+        self.bt_inserir.place(x=255, y=518)
+        self.bt_editar.place(x=340, y=518)
+        self.bt_deletar.place(x=425, y=518)
+        self.bt_pesquisa.place(x=618, y=215)
         self.view_command()
         root.mainloop()
 
@@ -182,7 +179,7 @@ class Funcionario:
             for row in rows:
                 self.tv.insert("", "end", values=row)
             self.limpar_dados()    
-            self.bt_limpar.place(x=529, y=235)
+            self.bt_limpar.place(x=618, y=247)
             ...
     # END def search_command
 
@@ -252,9 +249,8 @@ class Funcionario:
         else:    
             valor_id = tv_lista[0]
             self.limpar_dados()                
-            self.bt_confirmar.place(x=410, y=235)
-            self.bt_limpar.place(x=529, y=235)
-
+            self.bt_confirmar.place(x=510, y=518)
+            self.bt_limpar.place(x=618, y=247)
             self.e_cpf.insert(0, tv_lista[1])
             self.e_nome.insert(0, tv_lista[2])
             self.e_endereco.insert(0, tv_lista[3])
@@ -283,4 +279,4 @@ class Funcionario:
         self.e_pesquisa.delete(0, 'end')
         ...
     # END def limpar_dados    
-      
+   
